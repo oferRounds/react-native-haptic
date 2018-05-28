@@ -81,17 +81,21 @@ RCT_EXPORT_METHOD(prepare)
 }
 
 - (BOOL)activatedAlternativeHapticForType:(NSString *)type {
-  if([self needsAlternativeHaptic]){
-    if ([type isEqual: @"impact"]) {
-      AudioServicesPlaySystemSound((SystemSoundID) 1520);
-    } else if ([type isEqual:@"notification"]) {
-      AudioServicesPlaySystemSound((SystemSoundID) 1521);
-    } else if ([type isEqual:@"selection"]) {
-      AudioServicesPlaySystemSound((SystemSoundID) 1519);
+    if([self needsAlternativeHaptic]){
+        if ([type isEqual: @"impact"]) {
+            AudioServicesPlaySystemSound((SystemSoundID) 1520);
+        } else if ([type isEqual:@"notification.warning"]) {
+            AudioServicesPlaySystemSound((SystemSoundID) 1521);
+        } else if ([type isEqual:@"notification.success"]) {
+            AudioServicesPlaySystemSound((SystemSoundID) 1520);
+        } else if ([type isEqual:@"notification.error"]) {
+            AudioServicesPlaySystemSound((SystemSoundID) 1107);
+        }  else if ([type isEqual:@"selection"]) {
+            AudioServicesPlaySystemSound((SystemSoundID) 1519);
+        }
+        return YES;
     }
-    return YES;
-  }
-  return NO;
+    return NO;
 }
 
 @end
