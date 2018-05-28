@@ -53,13 +53,18 @@ RCT_EXPORT_METHOD(generate:(NSString *)type)
   if([self activatedAlternativeHapticForType:type]){
     return;
   }
-  if ([type isEqual: @"impact"]) {
-    [_impactFeedback impactOccurred];
-  } else if ([type isEqual:@"notification"]) {
-    [_notificationFeedback notificationOccurred:UINotificationFeedbackTypeWarning];
-  } else if ([type isEqual:@"selection"]) {
-    [_selectionFeedback selectionChanged];
-  }
+    
+    if ([type isEqual:@"impact"]) {
+        [_impactFeedback impactOccurred];
+    } else if ([type isEqual:@"notification.warning"]) {
+        [_notificationFeedback notificationOccurred:UINotificationFeedbackTypeWarning];
+    } else if ([type isEqual:@"notification.success"]) {
+        [_notificationFeedback notificationOccurred:UINotificationFeedbackTypeSuccess];
+    } else if ([type isEqual:@"notification.error"]) {
+        [_notificationFeedback notificationOccurred:UINotificationFeedbackTypeError];
+    } else if ([type isEqual:@"selection"]) {
+        [_selectionFeedback selectionChanged];
+    }
 }
 
 RCT_EXPORT_METHOD(prepare)
